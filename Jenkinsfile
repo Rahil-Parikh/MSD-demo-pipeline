@@ -15,7 +15,11 @@ pipeline {
             }
         }
         stage('Selenium Testing') {
-            echo 'No Test Pending'
+            steps {
+                script {
+                    echo 'No Test Pending'
+                }
+            }
         }
         stage('Push Image to Docker Hub') {
             steps {
