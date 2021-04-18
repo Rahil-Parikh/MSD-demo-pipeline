@@ -6,7 +6,7 @@ pipeline {
         registry = "rahilparikh123/demo-react"
         dockerImage = ""
     }
-    stages('Building Docker Image') {
+    stage('Building Docker Image') {
         steps{
             script {
                 dockerImage = docker.build(registry+":${env.BUILD_ID}")
