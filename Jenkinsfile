@@ -12,6 +12,13 @@ pipeline {
                 }
             }
         }
+        stage('Running Docker Container') {
+            steps {
+                script {
+                    dockerImage.withRun('-p 4200:4200')
+                }
+            }
+        }
         stage('Selenium Testing') {
             steps {
                 script {
@@ -22,8 +29,7 @@ pipeline {
         stage('Push Image to Docker Hub') {
             steps {
                 script {
-                    env.registryCredential = input message: 'Enter DockerHub credentials', parameters: [ password(defaultValue: 'password', description: '', name: 'hidden')]
-                    docker.withRegistry( '', registryCredential ) {
+                    docker.withRegistry( '', '61a56cd3-c74e-4f4b-ac5e-1579f33e981a' ) {
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
