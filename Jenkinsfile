@@ -1,9 +1,11 @@
 pipeline {
-    agent { dockerfile true }
+    agent { 
+        dockerfile true 
+    }
     environment {
         registry = "rahilparikh123/demo-react"
-        dockerImage = ‘’
-        }
+        dockerImage = ""
+    }
     agent any
     stages {
         stage('Building Docker Image') {
@@ -20,9 +22,9 @@ pipeline {
             steps{
                 script {
                     env.registryCredential = input message: 'Enter DockerHub credentials', parameters: [ password(defaultValue: 'password', description: '', name: 'hidden')]
-                    docker.withRegistry( ‘’, registryCredential ) {
+                    docker.withRegistry( "", registryCredential ) {
                         dockerImage.push()
-                        dockerImage.push(‘latest’)
+                        dockerImage.push('latest')
                 }
             }
         }
