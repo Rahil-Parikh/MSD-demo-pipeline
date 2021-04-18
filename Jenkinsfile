@@ -1,7 +1,7 @@
 pipeline {
     agent { dockerfile true }
     environment {
-        registry = rahilparikh123/demo-react”
+        registry = "rahilparikh123/demo-react"
         dockerImage = ‘’
         }
     agent any
