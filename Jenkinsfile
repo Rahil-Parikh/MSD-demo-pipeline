@@ -6,7 +6,6 @@ pipeline {
         registry = "rahilparikh123/demo-react"
         dockerImage = ""
     }
-    agent any
     stages {
         stage('Building Docker Image') {
             steps{
