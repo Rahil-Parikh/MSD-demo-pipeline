@@ -1,0 +1,8 @@
+version: '3'
+services:
+    react-frontend:
+        container_name: webapp
+        build: .
+        image: "rahilparikh123/sample-react"
+        ports:
+            - "4200:4200"
