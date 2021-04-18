@@ -15,7 +15,9 @@ pipeline {
         stage('Running Docker Container') {
             steps {
                 script {
-                    dockerImage.withRun('-p 4200:4200')
+                    dockerImage.withRun('-p 4200:4200'){ c ->
+                    sh 'sleep 5'
+                    }
                 }
             }
         }
