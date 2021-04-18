@@ -1,7 +1,9 @@
 pipeline {
-    agent {
-        dockerfile true
-    }
+    // agent {
+    //     dockerfile {
+    //         label 'demo-react-app'
+    //     }
+    // }
     environment {
         registry = 'rahilparikh123/demo-react'
         dockerImage = ''
@@ -10,7 +12,7 @@ pipeline {
         stage('Building Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build(registry + ":${env.BUILD_ID}")
+                    dockerImage = docker.build(registry + ":${env.BUILD_ID}", '.')
                 }
             }
         }
