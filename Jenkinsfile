@@ -1,9 +1,4 @@
 pipeline {
-    // agent {
-    //     dockerfile {
-    //         label 'demo-react-app'
-    //     }
-    // }
     environment {
         registry = 'rahilparikh123/demo-react'
         dockerImage = ''
