@@ -20,8 +20,10 @@ pipeline {
                     sh 'mvn clean install assembly:assembly -DdescriptorId=jar-with-dependencies'
                 }
                 script {
-                    dockerImage.withRun('--add-host=demo-react-test:172.19.0.2 -p 4200:4200') { 
-                        c -> sh 'java -Dfile.encoding=UTF-8 -classpath target/selenium.react.test-0.0.1-SNAPSHOT-jar-with-dependencies.jar selenium.react.test.ReactTest'
+                    dockerImage.withRun('--add-host=demo-react-test:172.19.0.2 -p 4200:4200') {
+                            wrap([$class: 'Xvfb']) {
+                                c -> sh 'java -Dfile.encoding=UTF-8 -classpath target/selenium.react.test-0.0.1-SNAPSHOT-jar-with-dependencies.jar selenium.react.test.ReactTest'
+                            }
                         }
                 }
             }
