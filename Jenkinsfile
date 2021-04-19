@@ -21,8 +21,10 @@ pipeline {
                 }
                 script {
                     dockerImage.withRun('--add-host=demo-react-test:172.19.0.2 -p 4200:4200') {
-                        c -> sh 'java -Dfile.encoding=UTF-8 -classpath target/selenium.react.test-0.0.1-SNAPSHOT-jar-with-dependencies.jar selenium.react.test.ReactTest'
+                        wrap([$class: 'Xvfb', additionalOptions: '', assignedLabels: '', autoDisplayName: true, debug: true, displayNameOffset: 0, installationName: 'default', parallelBuild: true, screen: '1024x768x24', timeout: 25]) {{
+                            c -> sh 'java -Dfile.encoding=UTF-8 -classpath target/selenium.react.test-0.0.1-SNAPSHOT-jar-with-dependencies.jar selenium.react.test.ReactTest'
                         }
+                    }
                 }
             }
         }
