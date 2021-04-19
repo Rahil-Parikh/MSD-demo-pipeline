@@ -3,25 +3,30 @@ pipeline {
     environment {
         registry = 'rahilparikh123/demo-react'
         dockerImage = ''
+        // boolean testSuccessful = true
     }
     stages {
-        stage('Building Docker Image') {
+        stage('Building Image || Building') {
             steps {
                 script {
                     dockerImage = docker.build(registry + ":${env.BUILD_ID}", '.')
                 }
             }
         }
-        stage('Running Docker Container') {
+        stage('Running Docker Container || Staging') {
+            steps{
+                git([url: 'https://github.com/Rahil-Parikh/selenium-maven-react-test.git', branch: 'master', credentialsId: '5d26ceaf-1404-40e5-838c-b3d9d38a5f22'])
+                sh 'mvn clean install assembly:assembly -DdescriptorId=jar-with-dependencies'
+            }
             steps {
                 script {
-                    dockerImage.withRun('-p 4200:4200'){ c ->
-                    sh 'sleep 5'
-                    }
+                    dockerImage.withRun('--add-host=demo-react-test:172.19.0.2 -p 4200:4200') { 
+                        c -> sh 'java -Dfile.encoding=UTF-8 -classpath target/selenium.react.test-0.0.1-SNAPSHOT-jar-with-dependencies.jar selenium.react.test.ReactTest'
+                        }
                 }
             }
         }
-        stage('Selenium Testing') {
+        stage('Selenium || Testing') {
             steps {
                 script {
                     echo 'No Test Pending'
@@ -35,6 +40,13 @@ pipeline {
                         dockerImage.push()
                         dockerImage.push('latest')
                     }
+                }
+            }
+        }
+        stage('Deploying Container || Deployment') {
+            steps {
+                script {
+                    dockerImage.run('-p 4201:4201')
                 }
             }
         }
