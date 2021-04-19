@@ -25,11 +25,11 @@ pipeline {
                     sh 'echo "Clean installing Test dependencies."'
                     sh 'mvn clean install assembly:assembly -DdescriptorId=jar-with-dependencies'
                 }
-                script{
+                script {
                     sh 'echo "Staging React Application to a Container for Tests."'
                 }
                 script {
-                    dockerImage.withRun('--add-host=demo-react-test:172.17.0.2 -p 4200:4200') {
+                    dockerImage.withRun('--add-host=demo-react-test:172.17.0.2 -p 4200:4200 --name "TestContainer"') {
                         sh 'echo "Waiting for the React Application to be hosted."'
                         sh 'until nc -z 172.17.0.2 4200; do sleep 2; done'
                         'echo "React Application detected as running on 4200 port"'
@@ -42,13 +42,6 @@ pipeline {
                 }
             }
         }
-        // stage('Selenium || Testing') {
-        //     steps {
-        //         script {
-        //             echo 'No Test Pending'
-        //         }
-        //     }
-        // }
         stage('Publishing Latest Build') {
             steps {
                 script {
@@ -63,7 +56,7 @@ pipeline {
             steps {
                 script {
                     sh 'echo "Deploying Docker Container on Port 4021"'
-                    dockerImage.run('--add-host=demo-react-test:172.17.0.10 -p 4201:4201 --name "Deploy||Operate"')
+                    dockerImage.run('--add-host=demo-react-test:172.17.0.10 -p 4201:4201 --name "DeployContainer"')
                 }
             }
         }
