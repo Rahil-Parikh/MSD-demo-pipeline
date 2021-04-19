@@ -29,7 +29,7 @@ pipeline {
                     sh 'echo "Staging React Application to a Container for Tests."'
                 }
                 script {
-                    dockerImage.withRun('--add-host=demo-react-test:172.17.0.2 -p 4200:4200 --name "TestContainer"') {
+                    dockerImage.withRun('--add-host=demo-react-test:172.17.0.2 -p 4200:4200') {
                         sh 'echo "Waiting for the React Application to be hosted."'
                         sh 'until nc -z 172.17.0.2 4200; do sleep 2; done'
                         'echo "React Application detected as running on 4200 port"'
@@ -58,7 +58,7 @@ pipeline {
                     sh 'echo "Deploying Docker Container on Port 4021"'
                 }
                 script {
-                    dockerImage.run('--add-host=demo-react-test:172.17.0.10 -p 4200:4201 --name "DeployContainer"')
+                    dockerImage.run('--add-host=demo-react-test:172.17.0.10 -p 4200:4201')
                 }
             }
         }
