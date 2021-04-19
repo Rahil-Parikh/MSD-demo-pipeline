@@ -5,6 +5,9 @@ pipeline {
         dockerImage = ''
         // boolean testSuccessful = true
     }
+    options {
+        timestamps ()
+    }
     stages {
         stage('Building') {
             steps {
@@ -22,8 +25,10 @@ pipeline {
                     sh 'echo "Clean installing Test dependencies."'
                     sh 'mvn clean install assembly:assembly -DdescriptorId=jar-with-dependencies'
                 }
-                script {
+                script{
                     sh 'echo "Staging React Application to a Container for Tests."'
+                }
+                script {
                     dockerImage.withRun('--add-host=demo-react-test:172.17.0.2 -p 4200:4200') {
                         sh 'echo "Waiting for the React Application to be hosted."'
                         sh 'until nc -z 172.17.0.2 4200; do sleep 2; done'
