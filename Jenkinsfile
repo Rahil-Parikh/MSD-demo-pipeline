@@ -56,7 +56,9 @@ pipeline {
             steps {
                 script {
                     sh 'echo "Deploying Docker Container on Port 4021"'
-                    dockerImage.run('--add-host=demo-react-test:172.17.0.10 -p 4201:4201 --name "DeployContainer"')
+                }
+                script {
+                    dockerImage.run('--add-host=demo-react-test:172.17.0.10 -p 4200:4201 --name "DeployContainer"')
                 }
             }
         }
