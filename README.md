@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Microservices & Devops CI/CD 
+![image](https://user-images.githubusercontent.com/46090098/187527804-1e0d1cba-6bef-421c-b166-66c18d868bf0.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project demonstrates Pipeline Stages
+## Building
+Docker Image of a React App
+## Staging & Testing
+Running Maven Built Selenium Tests on Testing Dockerized Environment
+## Publishing Latest Build 
+Publishing on Docker Hub with Build Tag
+## Deploying & Operating
+Dockerized Application-Ready Environment 
+![image](https://user-images.githubusercontent.com/46090098/187527653-96eb706f-344b-466b-a105-2050d27a2536.png)
+![image](https://user-images.githubusercontent.com/46090098/187528064-762a1edb-cde1-4c02-a3da-2aa5b3c8df33.png)
 
-## Available Scripts
+This repository contains the following 
+### Node-ReactJS project 
+The node React JS project simply runs with ‘ npm install ’ and ‘ npm start ‘ commands
+### Jenkinsfile
+The pipeline groovy script inside Jenkinsfile has the pipeline script which declares all the sequential stages
+### Dockerfile 
+Contains all the commands to assemble an image which is ready with node dependencies and is hosted for Testing and Deployment.
+### .dockerignore
+Contains all the files to ignore while copying the workspace while assembling Docker image
+### docker-compose.yml
+It allows to deploy, combine and configure multiple docker-containers at the same time. Running ‘ docker-compose up ’ for start up your application
 
-In the project directory, you can run:
+### Maven App
+The Testing stage utilizes this dependency [Rahil-Parikh/selenium-maven-react-test](https://github.com/Rahil-Parikh/selenium-maven-react-test) 
 
-### `npm start`
+## Documentation
+[Report.pdf](https://github.com/Rahil-Parikh/MSD-demo-pipeline/files/9456018/MSD_Report.pdf)
+## Drive Link
+https://drive.google.com/drive/u/1/folders/1dE8gnNxPfOL9N9SeuMlFtD2mg9nyeM-0
+## Video
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+https://user-images.githubusercontent.com/46090098/187531105-a62aefad-6fa4-4586-88cb-36d2f21a6f53.mp4
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+>[Video Link](https://drive.google.com/file/d/1vOlzAEY_4otJ5E9PkU3prLCm31hP5a79/view?usp=sharing)
+## Pipeline Logs Link 
+https://drive.google.com/file/d/1HaAgMqU9NIafO1xDZQ3LdMNJzLe8qGyV/view?usp=sharing
